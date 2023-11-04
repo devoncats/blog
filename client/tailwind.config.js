@@ -6,7 +6,8 @@ export default {
       neutral: {
         background: 'var(--neutral-background)',
         foreground: 'var(--neutral-foreground)'
-      }
+      },
+      transparent: 'transparent'
     }
   },
   plugins: []
