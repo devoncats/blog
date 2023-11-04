@@ -2,7 +2,7 @@ export default function Header () {
   return (
     <header className='flex items-center justify-between px-24 py-2 bg-neutral-background'>
       <section className='flex items-center gap-8'>
-        <img src='/logo-full.svg' alt='' />
+        <img src='/logo-full.svg' alt='Logo of the company' />
 
         <ul className='flex font-semibold text-neutral-foreground gap-8'>
           <li><a href='#'>Home</a></li>
