@@ -1,9 +1,9 @@
+import Header from './layouts/Header'
+
 function App () {
   return (
     <>
-      <header>
-        <h1>Hola mundo!</h1>
-      </header>
+      <Header />
     </>
   )
 }
