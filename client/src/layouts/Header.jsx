@@ -1,30 +1,44 @@
-import { BiSearchAlt2 } from 'react-icons/bi'
+import useThemeStore from '../stores/themeStore'
+import { BiMoon, BiSearchAlt2, BiSun } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 export default function Header () {
-  return (
-    <header className='flex py-2 justify-center bg-neutral-background'>
-      <article className='flex justify-between items-center w-[90vw]'>
-        <section className='flex justify-center items-center gap-8'>
-          <img src='/logo-full.svg' alt='Logo of the company' />
+  const theme = useThemeStore(state => state.theme)
+  const setTheme = useThemeStore(state => state.setTheme)
 
-          <ul className='flex font-semibold text-neutral-foreground gap-8'>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/about-me'>About me</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
+  return (
+    <header className='flex justify-center py-3 bg-neutral-background-1'>
+      <article className='w-[90vw] flex items-center justify-between'>
+        <section className='flex items-center justify-center gap-8'>
+          {
+            theme === 'dark'
+              ? <Link to='/'><img src='/logo-full-dark.svg' alt='Logo of the company' /></Link>
+              : <Link to='/'><img src='/logo-full.svg' alt='Logo of the company' /></Link>
+          }
+
+          <ul className='flex gap-8 font-semibold text-neutral-foreground-link-base'>
+            <li className='hover:text-neutral-foreground-link-hover'><Link to='/'>Home</Link></li>
+            <li className='hover:text-neutral-foreground-link-hover'><Link to='/about-me'>About me</Link></li>
+            <li className='hover:text-neutral-foreground-link-hover'><Link to='/contact'>Contact</Link></li>
           </ul>
         </section>
 
-        <section className='flex text-neutral-foreground gap-4'>
-          <button className='flex items-center justify-between px-4 w-52 text-sm rounded-lg bg-neutral-foreground text-neutral-background'>
+        <section className='flex gap-4 text-neutral-foreground-1'>
+          {
+            theme === 'light'
+              ? <button onClick={() => setTheme('dark')}><BiSun className='text-2xl' /></button>
+              : <button onClick={() => setTheme('light')}><BiMoon className='text-2xl' /></button>
+          }
+          <button className='w-64 flex items-center justify-between px-4 rounded-lg text-sm text-neutral-foreground-2 bg-neutral-background-2'>
             <div className='flex items-center gap-2'>
               <BiSearchAlt2 />
               <p>Quick search...</p>
             </div>
-            <p>Ctrl K</p>
 
+            <p className='px-2 py-1 rounded-md text-neutral-foreground-3 bg-neutral-background-3'>Ctrl K</p>
           </button>
-          <button className='px-4 py-2 rounded-lg font-semibold text-neutral-background bg-neutral-foreground'>Login</button>
+
+          <Link className='px-4 py-2 rounded-lg font-semibold text-white bg-brand-1 hover:bg-brand-hover' to='/login'>Login</Link>
         </section>
       </article>
     </header>

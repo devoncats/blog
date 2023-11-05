@@ -2,8 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  :root {
-    --neutral-background: #ffffff;
-    --neutral-foreground: #111822;
+  :root[data-theme="light"] {
+    --neutral-foreground-1: #111111; /* Main text */
+    --neutral-foreground-2: #d7d7d7; /* Secondary text */
+    --neutral-foreground-3: #666666; /* Tertiary text */
+    --neutral-foreground-link: #8a8a8a; 
+    --neutral-foreground-link-hover: #111111;
+    --neutral-foreground-inverted: #ffffff;
+    --neutral-foreground-inverted-hover: #f7f7f7;
+
+    --neutral-background-1: #ffffff; /* Main background */
+    --neutral-background-2: #f2f2f2; /* Secondary background */
+    --neutral-background-3: #d8d8d8; /* Tertiary background */
+    --neutral-background-inverted: #111111;
+    --neutral-background-inverted-hover: #272727;
+
+    --neutral-stroke: #f6f6f6;
+    --neutral-stroke-selected: #aeaeae;
+    
+    --brand-1: #7f57f1;
+    --brand-2: #8050bc;
+    --brand-1-hover: #6782df;
+
+    --white: #ffffff;
+    --black: #111111;
+  }
+
+  :root[data-theme="dark"] {
+    --neutral-foreground-1: #ffffff; /* Main text */
+    --neutral-foreground-2: #696969; /* Secondary text */
+    --neutral-foreground-3: #909090; /* Tertiary text */
+    --neutral-foreground-link: #aeaeae; 
+    --neutral-foreground-link-hover: #f3f3f3;
+    --neutral-foreground-inverted: #111111;
+    --neutral-foreground-inverted-hover: #3b3b3b;
+
+    --neutral-background-1: #111111; /* Main background */
+    --neutral-background-2: #1d1d1d; /* Secondary background */
+    --neutral-background-3: #272727; /* Tertiary background */
+    --neutral-background-inverted: #ffffff;
+    --neutral-background-inverted-hover: #f6f6f6;
+
+    --neutral-stroke: #272727;
+    --neutral-stroke-selected: #ffffff;
+
+    --brand-1: #718ef4;
+    --brand-2: #8050bc;
+    --brand-1-hover: #6782df;
+    
+    --white: #ffffff;
+    --black: #111111;
   }
 }
