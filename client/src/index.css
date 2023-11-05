@@ -7,9 +7,3 @@
     --neutral-foreground: #111822;
   }
 }
-
-.sombra {
-  box-shadow: 0 -5rem 50px 130px rgba(0,0,0,0.5) inset;
-  -webkit-box-shadow: 0 -5rem 50px 130px rgba(0,0,0,0.5) inset;
-  -moz-box-shadow: 0 -5rem 50px 130px rgba(0,0,0,0.5) inset;
-}
