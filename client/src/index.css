@@ -3,54 +3,54 @@
 @tailwind utilities;
 @layer base {
   :root[data-theme="light"] {
-    --neutral-foreground-1: #111111; /* Main text */
-    --neutral-foreground-2: #d7d7d7; /* Secondary text */
-    --neutral-foreground-3: #666666; /* Tertiary text */
-    --neutral-foreground-link: #8a8a8a; 
-    --neutral-foreground-link-hover: #111111;
-    --neutral-foreground-inverted: #ffffff;
-    --neutral-foreground-inverted-hover: #f7f7f7;
+    --neutral-foreground-1: 0deg 0% 7%;
+    --neutral-foreground-2: 0deg 0% 84%;
+    --neutral-foreground-3: 0deg 0% 40%;
+    --neutral-foreground-link: 0deg 0% 54%;
+    --neutral-foreground-link-hover: 0deg 0% 7%;
+    --neutral-foreground-inverted: 0deg 0% 100%;
+    --neutral-foreground-inverted-hover: 0deg 0% 96%;
 
-    --neutral-background-1: #ffffff; /* Main background */
-    --neutral-background-2: #f2f2f2; /* Secondary background */
-    --neutral-background-3: #d8d8d8; /* Tertiary background */
-    --neutral-background-inverted: #111111;
-    --neutral-background-inverted-hover: #272727;
+    --neutral-background-1: 0deg 0% 100%;
+    --neutral-background-2: 0deg 0% 95%;
+    --neutral-background-3: 0deg 0% 85%;
+    --neutral-background-inverted: 0deg 0% 7%;
+    --neutral-background-inverted-hover: 0deg 0% 15%;
 
-    --neutral-stroke: #f6f6f6;
-    --neutral-stroke-selected: #aeaeae;
-    
-    --brand-1: #7f57f1;
-    --brand-2: #8050bc;
-    --brand-1-hover: #6782df;
+    --neutral-stroke: 0deg 0% 96%;
+    --neutral-stroke-selected: 0deg 0% 68%;
 
-    --white: #ffffff;
-    --black: #111111;
+    --brand-1: 251deg 73% 56%;
+    --brand-2: 253deg 60% 44%;
+    --brand-1-hover: 228deg 49% 65%;
+
+    --white: 0deg 0% 100%;
+    --black: 0deg 0% 7%;
   }
 
   :root[data-theme="dark"] {
-    --neutral-foreground-1: #ffffff; /* Main text */
-    --neutral-foreground-2: #696969; /* Secondary text */
-    --neutral-foreground-3: #909090; /* Tertiary text */
-    --neutral-foreground-link: #aeaeae; 
-    --neutral-foreground-link-hover: #f3f3f3;
-    --neutral-foreground-inverted: #111111;
-    --neutral-foreground-inverted-hover: #3b3b3b;
+    --neutral-foreground-1: 0deg 0% 100%;
+    --neutral-foreground-2: 0deg 0% 41%;
+    --neutral-foreground-3: 0deg 0% 56%;
+    --neutral-foreground-link: 0deg 0% 68%;
+    --neutral-foreground-link-hover: 0deg 0% 95%;
+    --neutral-foreground-inverted: 0deg 0% 7%;
+    --neutral-foreground-inverted-hover: 0deg 0% 23%;
 
-    --neutral-background-1: #111111; /* Main background */
-    --neutral-background-2: #1d1d1d; /* Secondary background */
-    --neutral-background-3: #272727; /* Tertiary background */
-    --neutral-background-inverted: #ffffff;
-    --neutral-background-inverted-hover: #f6f6f6;
+    --neutral-background-1: 0deg 0% 7%;
+    --neutral-background-2: 0deg 0% 12%;
+    --neutral-background-3: 0deg 0% 16%;
+    --neutral-background-inverted: 0deg 0% 100%;
+    --neutral-background-inverted-hover: 0deg 0% 96%;
 
-    --neutral-stroke: #272727;
-    --neutral-stroke-selected: #ffffff;
+    --neutral-stroke: 0deg 0% 16%;
+    --neutral-stroke-selected: 0deg 0% 100%;
 
-    --brand-1: #718ef4;
-    --brand-2: #8050bc;
-    --brand-1-hover: #6782df;
-    
-    --white: #ffffff;
-    --black: #111111;
+    --brand-1: 226deg 68% 59%;
+    --brand-2: 253deg 60% 44%;
+    --brand-1-hover: 228deg 49% 65%;
+
+    --white: 0deg 0% 100%;
+    --black: 0deg 0% 7%;
   }
 }

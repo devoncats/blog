@@ -8,7 +8,7 @@ export default function Hero () {
         <h2 className='mt-2 text-6xl font-semibold text-neutral-foreground-1'>Writing about <span className='text-transparent bg-clip-text bg-gradient-to-tr from-brand-1 to-brand-2'>technology</span></h2>
         <p className='mt-6 text-neutral-foreground-1'>The latest industry news, interviews, technologies, and resources.</p>
         <article className='w-[90vw] h-[40vw] mt-16'>
-          <div className='absolute grid top-[45vw] left-32 gap-4 z-50'>
+          <div className='absolute grid top-[45vw] left-32 gap-4 z-40'>
             <h2 className='text-lg text-white'>Olivia Rhye - 29 February 2021 </h2>
 
             <div className='grid gap-4'>
