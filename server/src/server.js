@@ -19,6 +19,7 @@ app.use(cookieParser())
 
 // route handler
 app.use('/api/v0/user', router)
+app.use('/avatar', express.static('src/uploads/avatars'))
 
 // start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

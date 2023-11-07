@@ -7,6 +7,7 @@ async function requireAuth (req, res, next) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
     if (!decoded) return res.status(401).json({ error: 'Unauthorized' })
+
     if (decoded.exp < Date.now()) return res.status(401).json({ error: 'Token expired' })
 
     const user = await User.findById(decoded.sub)

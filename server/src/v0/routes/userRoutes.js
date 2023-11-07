@@ -1,11 +1,13 @@
 const express = require('express')
 const userController = require('../controllers/userController')
 const requireAuth = require('../middlewares/requireAuth')
+const userUpload = require('../middlewares/userUpload')
 
 const router = express.Router()
 
-router.post('/register', userController.register)
+router.post('/register', userUpload.single('image'), userController.register)
 router.post('/login', userController.login)
+router.put('/:id', requireAuth, userUpload.single('image'), userController.update)
 router.get('/logout', userController.logout)
 router.get('/checkauth', requireAuth, userController.checkAuth)
 router.get('/', userController.getUsers)

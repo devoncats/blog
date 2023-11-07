@@ -1,17 +1,20 @@
+const fs = require('node:fs')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/users')
 
 async function register (req, res) {
   try {
-    const { name, email, password, role, gender, image } = req.body
+    const { name, email, password, role, gender } = req.body
+    const image = req.file ? req.file.path : 'src/uploads/avatars/default.jpg'
 
     const hashedPassword = await bcrypt.hash(password, 8)
-
     await User.create({ name, gender, email, password: hashedPassword, role, image })
 
     res.json({ message: 'User created' })
   } catch (error) {
+    if (req.file) fs.unlinkSync(req.file.path)
+
     res.status(500).json({ error })
   }
 }
@@ -33,6 +36,24 @@ async function login (req, res) {
 
     res.json({ user })
   } catch (error) {
+    res.status(500).json({ error })
+  }
+}
+
+async function update (req, res) {
+  try {
+    const id = req.params.id
+
+    const { name, email, gender } = req.body
+    const image = req.file ? req.file.path : 'src/uploads/avatars/default.jpg'
+
+    if (req.user.image !== 'src/uploads/avatars/default.jpg') fs.unlinkSync(req.user.image)
+
+    await User.findByIdAndUpdate(id, { name, email, gender, image })
+
+    res.json({ message: 'User updated' })
+  } catch (error) {
+    if (req.file) fs.unlinkSync(req.file.path)
     res.status(500).json({ error })
   }
 }
@@ -63,4 +84,4 @@ async function getUsers (req, res) {
   }
 }
 
-module.exports = { register, login, logout, checkAuth, getUsers }
+module.exports = { register, login, update, logout, checkAuth, getUsers }
