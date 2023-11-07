@@ -17,11 +17,7 @@ export default function Header () {
     >
       <article className='w-[90vw] flex items-center justify-between'>
         <section className='flex items-center justify-center gap-8'>
-          {
-            theme === 'dark'
-              ? <Link to='/'><img src='/logo-full-dark.svg' alt='Logo of the company' /></Link>
-              : <Link to='/'><img src='/logo-full.svg' alt='Logo of the company' /></Link>
-          }
+          <Link to='/'><img src={theme === 'dark' ? '/logo-full-dark.svg' : '/logo-full.svg'} alt='Logo of the company' /></Link>
 
           <ul className='flex gap-8 font-semibold text-neutral-foreground-1'>
             <li className='hover:text-neutral-foreground-1/80'><Link to='/'>Home</Link></li>

@@ -21,9 +21,9 @@ async function register (req, res) {
 
 async function login (req, res) {
   try {
-    const { email, password } = req.body
+    const { input, password } = req.body
 
-    const user = await User.findOne({ email })
+    const user = input.includes('@') ? await User.findOne({ email: input }) : await User.findOne({ name: input })
     if (!user) return res.status(404).json({ error: 'User not found' })
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
