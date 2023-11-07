@@ -67,14 +67,6 @@ async function logout (req, res) {
   }
 }
 
-async function checkAuth (req, res) {
-  try {
-    res.json({ user: req.user })
-  } catch (error) {
-    res.status(500).json({ error })
-  }
-}
-
 async function getUsers (req, res) {
   try {
     const users = await User.find()
@@ -84,4 +76,16 @@ async function getUsers (req, res) {
   }
 }
 
-module.exports = { register, login, update, logout, checkAuth, getUsers }
+async function getUser (req, res) {
+  try {
+    const id = req.params.id
+
+    const user = await User.findById(id)
+
+    res.json({ user })
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
+
+module.exports = { register, login, update, logout, getUsers, getUser }

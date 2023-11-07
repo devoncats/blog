@@ -9,7 +9,7 @@ router.post('/register', userUpload.single('image'), userController.register)
 router.post('/login', userController.login)
 router.put('/:id', requireAuth, userUpload.single('image'), userController.update)
 router.get('/logout', userController.logout)
-router.get('/checkauth', requireAuth, userController.checkAuth)
+router.get('/:id', userController.getUser)
 router.get('/', userController.getUsers)
 
 module.exports = router
