@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import useThemeStore from '../stores/themeStore'
 import { BiLowVision, BiShowAlt } from 'react-icons/bi'
+import useLoginForm from '../hooks/useLoginForm'
 
 export default function Login () {
   const theme = useThemeStore(theme => theme.theme)
-
-  const [emailSelected, setEmailSelected] = useState(false)
-  const [passwordSelected, setPasswordSelected] = useState(false)
+  const login = useLoginForm()  
 
   return (
     <main className='h-screen w-screen grid place-content-center bg-[url("/bg.svg")] bg-cover text-neutral-foreground-1'>
@@ -18,15 +16,38 @@ export default function Login () {
           <p className='text-sm text-neutral-foreground-3'>Please enter your details</p>
         </div>
 
-        <form className='w-full grid gap-4'>
+        <form className='w-full grid gap-4' onSubmit={login.handleSubmit}>
           <div className='flex flex-col relative'>
-            <label className={emailSelected ? 'absolute text-sm -translate-y-6 transition-all' : 'absolute top-1 text-lg transition-all'} htmlFor='email'>Email</label>
-            <input className='h-10 bg-transparent border-b px-2 z-40' type='email' name='email' id='email' onSelect={() => setEmailSelected(true)} onBlur={() => setEmailSelected(false)} />
+            <label className={login.emailSelected || login.email !== '' ? 'absolute text-sm -translate-y-6 transition-all' : 'absolute top-1 text-lg transition-all'} htmlFor='email'>Email</label>
+            <input
+              className='h-10 bg-neutral-background-1 border-b px-2'
+              name='email'
+              id='email'
+              type='email'
+              value={login.email}
+              onChange={login.handleEmail}
+              onSelect={login.handleEmailSelected}
+              onBlur={login.handleEmailBlur}
+              autoComplete='current-password'
+            />
           </div>
 
           <div className='flex flex-col relative mt-6'>
-            <label className={passwordSelected ? 'absolute text-sm -translate-y-6 transition-all' : 'absolute top-1 text-lg transition-all'} htmlFor='password'>Password</label>
-            <input className='h-10 bg-transparent border-b px-2 z-40' type='password' name='password' id='password' onSelect={() => setPasswordSelected(true)} onBlur={() => setPasswordSelected(false)} />
+            <label className={login.passwordSelected || login.password !== '' ? 'absolute text-sm -translate-y-6 transition-all z-30' : 'absolute top-1 text-lg transition-all'} htmlFor='password'>Password</label>
+            <input
+              className='h-10 bg-neutral-background-1  border-b px-2'
+              name='password'
+              id='password'
+              type={login.type}
+              value={login.password}
+              onChange={login.handlePassword}
+              onSelect={login.handlePasswordSelected}
+              onBlur={login.handlePasswordBlur}
+              autoComplete='on'
+            />
+            <button className='absolute top-3 right-0' type='button' onClick={login.changePasswordType}>
+              {login.passwordVisible ? <BiLowVision className='text-xl' /> : <BiShowAlt className='text-xl' />}
+            </button>
           </div>
 
           <div className='flex justify-between'>
@@ -38,10 +59,9 @@ export default function Login () {
           </div>
 
           <div className='flex flex-col gap-4'>
-            <button className='p-2 rounded-lg font-semibold bg-neutral-background-inverted-base text-neutral-foreground-inverted-base'>Login</button>
+            <button className='p-2 rounded-lg font-semibold bg-neutral-background-inverted-base text-neutral-foreground-inverted-base' type='submit'>Login</button>
             <button className='p-2 rounded-lg font-semibold text-neutral-foreground-1'>Login with google</button>
           </div>
-
         </form>
 
         <p>Don't have an account? <a className='font-semibold' href='#'>Sign up</a></p>

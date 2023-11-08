@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 // import dependecies
 const express = require('express')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const connectDB = require('./config/db')
 const router = require('./v0/routes/userRoutes')
 
@@ -16,6 +17,10 @@ connectDB()
 // configure express app
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+  origin: true,
+  credentials: true
+}))
 
 // route handler
 app.use('/api/v0/user', router)
