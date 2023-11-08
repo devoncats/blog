@@ -1,8 +1,8 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useThemeStore from '../stores/themeStore'
-import { BiLowVision, BiShowAlt } from 'react-icons/bi'
 import useAuthStore from '../stores/authStore'
-import { useEffect, useState } from 'react'
+import { BiLowVision, BiShowAlt } from 'react-icons/bi'
 
 export default function Login () {
   const theme = useThemeStore(theme => theme.theme)
