@@ -1,10 +1,24 @@
+import { useNavigate } from 'react-router-dom'
 import useThemeStore from '../stores/themeStore'
 import { BiLowVision, BiShowAlt } from 'react-icons/bi'
-import useLoginForm from '../hooks/useLoginForm'
+import useAuthStore from '../stores/authStore'
+import { useEffect, useState } from 'react'
 
 export default function Login () {
   const theme = useThemeStore(theme => theme.theme)
-  const login = useLoginForm()  
+  const login = useAuthStore()
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await login.login()
+
+    console.log(login.auth)
+  }
+
+  useEffect(() => {
+    if (login.auth) navigate('/')
+  }, [login.auth])
 
   return (
     <main className='h-screen w-screen grid place-content-center bg-[url("/bg.svg")] bg-cover text-neutral-foreground-1'>
@@ -16,47 +30,45 @@ export default function Login () {
           <p className='text-sm text-neutral-foreground-3'>Please enter your details</p>
         </div>
 
-        <form className='w-full grid gap-4' onSubmit={login.handleSubmit}>
+        {!login.loginForm.valid && <p className='text-2xl'>Incorrect username or password</p>}
+
+        <form className='w-full grid gap-4' onSubmit={handleSubmit}>
           <div className='flex flex-col relative'>
-            <label className={login.emailSelected || login.email !== '' ? 'absolute text-sm -translate-y-6 transition-all' : 'absolute top-1 text-lg transition-all'} htmlFor='email'>Email</label>
+            <label className={login.loginForm.usernameSelected || login.loginForm.username !== '' ? 'absolute text-sm -translate-y-6 transition-all' : 'absolute top-1 text-lg transition-all'} htmlFor='username'>Email or username</label>
             <input
               className='h-10 bg-neutral-background-1 border-b px-2'
-              name='email'
-              id='email'
-              type='email'
-              value={login.email}
-              onChange={login.handleEmail}
-              onSelect={login.handleEmailSelected}
-              onBlur={login.handleEmailBlur}
-              autoComplete='current-password'
+              name='username'
+              id='username'
+              type='text'
+              value={login.loginForm.username}
+              onChange={login.handleLoginFormChange}
+              onSelect={login.handleLoginFormSelected}
+              onBlur={login.handleLoginFormBlur}
+              autoComplete='on'
+              required
             />
           </div>
 
           <div className='flex flex-col relative mt-6'>
-            <label className={login.passwordSelected || login.password !== '' ? 'absolute text-sm -translate-y-6 transition-all z-30' : 'absolute top-1 text-lg transition-all'} htmlFor='password'>Password</label>
+            <label className={login.loginForm.passwordSelected || login.loginForm.password !== '' ? 'absolute text-sm -translate-y-6 transition-all z-30' : 'absolute top-1 text-lg transition-all'} htmlFor='password'>Password</label>
             <input
               className='h-10 bg-neutral-background-1  border-b px-2'
               name='password'
               id='password'
-              type={login.type}
-              value={login.password}
-              onChange={login.handlePassword}
-              onSelect={login.handlePasswordSelected}
-              onBlur={login.handlePasswordBlur}
+              type={login.loginForm.type}
+              value={login.loginForm.password}
+              onChange={login.handleLoginFormChange}
+              onSelect={login.handleLoginFormSelected}
+              onBlur={login.handleLoginFormBlur}
               autoComplete='on'
+              required
             />
             <button className='absolute top-3 right-0' type='button' onClick={login.changePasswordType}>
-              {login.passwordVisible ? <BiLowVision className='text-xl' /> : <BiShowAlt className='text-xl' />}
+              {login.loginForm.type === 'password' ? <BiLowVision className='text-xl' /> : <BiShowAlt className='text-xl' />}
             </button>
           </div>
 
-          <div className='flex justify-between'>
-            <div className='flex items-center gap-1'>
-              <input type='checkbox' name='remember' id='remember' />
-              <label htmlFor='remember'>Remember me</label>
-            </div>
-            <a className='text-neutral-foreground-3' href='#'>Forgot password?</a>
-          </div>
+          <a className='text-neutral-foreground-3' href='#'>Forgot password?</a>
 
           <div className='flex flex-col gap-4'>
             <button className='p-2 rounded-lg font-semibold bg-neutral-background-inverted-base text-neutral-foreground-inverted-base' type='submit'>Login</button>

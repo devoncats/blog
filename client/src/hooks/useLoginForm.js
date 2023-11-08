@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import authStore from '../stores/authStore'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ export default function useLoginForm () {
   const [type, setType] = useState('password')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
 
   const changePasswordType = () => {
     setPasswordVisible(!passwordVisible)
@@ -39,18 +40,17 @@ export default function useLoginForm () {
   }
 
   const handleEmail = (e) => {
-    e.preventDefault()
     setEmail(e.target.value)
   }
 
   const handlePassword = (e) => {
-    e.preventDefault()
     setPassword(e.target.value)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     await store.login(email, password)
+
     if (store.auth) navigate('/')
   }
 
