@@ -12,8 +12,6 @@ export default function Login () {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await login.login()
-
-    console.log(login.auth)
   }
 
   useEffect(() => {
@@ -63,7 +61,7 @@ export default function Login () {
               autoComplete='on'
               required
             />
-            <button className='absolute top-3 right-0' type='button' onClick={login.changePasswordType}>
+            <button className='absolute top-3 right-2' type='button' onClick={login.changePasswordType}>
               {login.loginForm.type === 'password' ? <BiLowVision className='text-xl' /> : <BiShowAlt className='text-xl' />}
             </button>
           </div>

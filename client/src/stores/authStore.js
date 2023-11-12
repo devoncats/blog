@@ -26,7 +26,7 @@ const useAuthStore = create((set) => ({
   },
 
   handleLoginFormSelected: (e) => {
-    const {name} = e.target
+    const { name } = e.target
 
     if (name === 'username') {
       set(state => ({
@@ -46,7 +46,7 @@ const useAuthStore = create((set) => ({
 },
 
   handleLoginFormBlur: (e) => {
-    const {name} = e.target
+    const { name } = e.target
 
     if (name === 'username') {
       set(state => ({
@@ -69,7 +69,7 @@ const useAuthStore = create((set) => ({
     set(state => ({
       loginForm: {
         ...state.loginForm,
-        type: 'password' ? 'text' : 'password'
+        type: state.loginForm.type === 'password' ? 'text' : 'password'
       }
     }))
   },
